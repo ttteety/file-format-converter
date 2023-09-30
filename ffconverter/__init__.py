@@ -38,13 +38,15 @@ def process_file(src_base_dir, ds, tgt_base_dir):
             raise
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        filename='logs/ffc.log',
-        format='%(levelname)s %(asctime)s %(message)s'
-    )
+    log_file_path = os.environ['LOG_FILE_PATH']
     src_base_dir = os.environ['SRC_BASE_DIR']
     tgt_base_dir = os.environ['TGT_BASE_DIR']
+    logging.basicConfig(
+        level=logging.INFO,
+        filename=log_file_path,
+        format='%(levelname)s %(asctime)s %(message)s'
+    )
+
     datasets = os.environ.get('DATASETS')
     logging.info('File format conversion: Successful')
     if not datasets:
